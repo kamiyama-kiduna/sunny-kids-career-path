@@ -851,7 +851,7 @@ function renderGradeDetailSection(grade) {
     }
     if (rawVal && rawVal !== 'なし' && rawVal.trim() !== '') {
       const uid = 'gd_' + grade + '_' + (sectionId++);
-      const content = rawVal.replace(/\n/g, '<br>').replace(/・/g, '<br>・');
+      const content = rawVal.replace(/\n/g, '<br>');
       html += '<div class="grade-detail-chip" onclick="toggleGradeDetail(\'' + uid + '\', this)" style="cursor:pointer;padding:10px 14px;margin:4px 0;border-radius:10px;border:1px solid #e0e0e0;background:var(--white);transition:all 0.2s;">';
       html += '<div style="display:flex;align-items:center;gap:8px;">';
       html += '<span style="font-size:15px;">' + sec.icon + '</span>';
@@ -949,7 +949,7 @@ function renderInlineDetail(grade, fieldKey, label) {
   // Expandable detail for the rest
   const trimmedRest = restContent.trim();
   if (trimmedRest) {
-    const formattedRest = trimmedRest.replace(/\n/g, '<br>').replace(/・/g, '<br>・');
+    const formattedRest = trimmedRest.replace(/\n/g, '<br>');
     html += '<div onclick="toggleGradeDetail(\'' + uid + '\', this)" style="cursor:pointer;margin-top:6px;padding:6px 12px;border-radius:8px;background:rgba(255,255,255,0.7);border:1px dashed #ccc;transition:all 0.2s;">'
       + '<div style="display:flex;align-items:center;gap:6px;">'
       + '<span style="font-size:11px;color:var(--light-text);">📄 ' + label + '</span>'
