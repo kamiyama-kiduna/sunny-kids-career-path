@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>キャリアパスガイド - Sunny Kids Clinic</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-title">
+        Sunnyキッズクリニック キャリアパスガイド
+      </div>
+      <div class="header-controls">
+        <div class="mode-toggle">
+          <span class="mode-label">表示モード:</span>
+          <button class="toggle-btn active" data-mode="staff">スタッフモード</button>
+          <button class="toggle-btn" data-mode="evaluator">評価者モード</button>
+        </div>
+        <div class="selector-group">
+          <label class="selector-label">コース選択:</label>
+          <select id="courseSelect">
+            <option value="S">S - 事業部</option>
+            <option value="P">P - 企画部</option>
+            <option value="B">B - 管理部</option>
+            <option value="SP">SP - SPコース</option>
+            <option value="L">L - リーダー</option>
+            <option value="M">M - マネージャー</option>
+          </select>
+        </div>
+        <div class="selector-group">
+          <label class="selector-label">現在のグレード:</label>
+          <select id="gradeSelect">
+            <option value="">選択してください</option>
+          </select>
+        </div>
+        <div class="selector-group" style="border-left:2px solid var(--border);padding-left:12px;">
+          <label class="selector-label">ありたい姿:</label>
+          <select id="targetGradeHeaderSelect">
+            <option value="">選んでみてください</option>
+          </select>
+        </div>
+        <div class="selector-group" style="border-left:2px solid var(--border);padding-left:12px;">
+          <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text);cursor:pointer;">
+            <input type="checkbox" id="moneyModeToggle" onchange="toggleMoneyMode(this.checked)">
+            <span style="font-weight:600;">💰 給与シミュレーション</span>
+          </label>
+        </div>
+      </div>
+      <!-- 給与シミュレーション属性パネル（トグルON時のみ表示） -->
+      <div id="moneyPanel" style="display:none;padding:10px 16px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-top:1px solid #a5d6a7;gap:16px;flex-wrap:wrap;align-items:center;">
+        <div class="selector-group">
+          <label class="selector-label">雇用区分:</label>
+          <select id="employmentTypeSelect" onchange="appState.employmentType=this.value;refreshCurrentTab();" style="padding:6px 8px;border:1px solid #a5d6a7;border-radius:6px;font-size:13px;">
+            <option value="正社員">正社員</option>
+            <option value="ライフサポート正社員">ライフサポート正社員</option>
+            <option value="パート">パート</option>
+            <option value="スポット">スポット</option>
+          </select>
+        </div>
+        <div class="selector-group">
+          <label class="selector-label">等級（号俸）:</label>
+          <input type="number" id="tokkyuInput" min="1" max="99" value="1" onchange="appState.tokkyu=parseInt(this.value)||1;refreshCurrentTab();" style="width:60px;padding:6px 8px;border:1px solid #a5d6a7;border-radius:6px;font-size:13px;text-align:center;">
+        </div>
+        <div class="selector-group">
+          <label class="selector-label">現在の役職:</label>
+          <select id="positionSelect" style="padding:6px 8px;border:1px solid #a5d6a7;border-radius:6px;font-size:13px;">
+            <option value="">なし</option>
+            <option value="職種リーダー">職種L（20,000円）</option>
+            <option value="副分院長">副分院L（25,000円）</option>
+            <option value="分院長">分院L（30,000円）</option>
+            <option value="M1">M1（35,000円）</option>
+            <option value="M2">M2（40,000円）</option>
+            <option value="M3">M3（45,000円）</option>
+            <option value="CEO">CEO・役員（50,000円）</option>
+          </select>
+        </div>
+        <div class="selector-group">
+          <label class="selector-label">保有資格:</label>
+          <div id="certCheckboxes" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;color:var(--text);cursor:pointer;background:white;padding:5px 12px;border-radius:8px;border:1px solid #a5d6a7;transition:all 0.2s;">
+              <input type="checkbox" class="cert-check" value="看護師"> 看護師
+            </label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;color:var(--text);cursor:pointer;background:white;padding:5px 12px;border-radius:8px;border:1px solid #a5d6a7;transition:all 0.2s;">
+              <input type="checkbox" class="cert-check" value="PT"> PT/OT/ST
+            </label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:13px;color:var(--text);cursor:pointer;background:white;padding:5px 12px;border-radius:8px;border:1px solid #a5d6a7;transition:all 0.2s;">
+              <input type="checkbox" class="cert-check" value="保育士"> 保育士
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="career-map">キャリアマップ</button>
+      <button class="tab-btn" data-tab="evaluation-criteria">評価基準</button>
+      <button class="tab-btn" data-tab="growth-actions">成長アクション</button>
+      <button class="tab-btn" data-tab="system-info">制度のしくみ</button>
+    </div>
+
+    <!-- Tab 1: Career Map -->
+    <div id="career-map" class="tab-content active">
+      <div class="loading-spinner" id="careerMapLoading">
+        <div class="spinner"></div>
+        <p>キャリアマップを読み込み中...</p>
+      </div>
+      <div id="careerMapContent"></div>
+    </div>
+
+    <!-- Tab 2: Evaluation Criteria -->
+    <div id="evaluation-criteria" class="tab-content">
+      <div class="loading-spinner" id="criteriaLoading">
+        <div class="spinner"></div>
+        <p>評価基準を読み込み中...</p>
+      </div>
+      <div id="criteriaContent"></div>
+    </div>
+
+    <!-- Tab 3: Growth Actions -->
+    <div id="growth-actions" class="tab-content">
+      <div class="loading-spinner" id="growthLoading">
+        <div class="spinner"></div>
+        <p>成長アクションを読み込み中...</p>
+      </div>
+      <div id="growthContent"></div>
+    </div>
+
+    <!-- Tab 4: System Information -->
+    <div id="system-info" class="tab-content">
+      <div class="loading-spinner" id="systemLoading">
+        <div class="spinner"></div>
+        <p>制度情報を読み込み中...</p>
+      </div>
+      <div id="systemContent"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
