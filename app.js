@@ -1692,8 +1692,7 @@ function getEvaluationWeights(grade) {
     coreValue = 20; okr = 30; jobLevel = 30; competency = 20;
   } else if (grade === 'BM1') {
     coreValue = 15; okr = 30; jobLevel = 30; competency = 25;
-  } else if (['BM2', 'BM3'].includes(grade)) {
-    coreValue = 10; okr = 35; jobLevel = 30; competency = 25;
+  // BM2, BM3 は M2以降と合流 → else（末尾）で処理
   // ===== S/SP/P系ウエイト =====
   } else if (grade === 'S1') {
     coreValue = 50; okr = 10; jobLevel = 40; competency = 0;
