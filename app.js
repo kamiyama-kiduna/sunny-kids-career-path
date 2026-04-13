@@ -721,22 +721,6 @@ function renderCVLevelChips(levelRange) {
   html += '</div>';
   html += '<div id="' + cvUid + '" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(230,179,30,0.2);">';
 
-  // 評価者の視点
-  if (topDetail.evaluator) {
-    html += '<div style="margin-bottom:12px;">';
-    html += '<div style="font-size:11px;font-weight:600;color:#fff;background:#2196F3;display:inline-block;padding:4px 10px;border-radius:4px;margin-bottom:6px;">評価者の視点</div>';
-    html += '<div style="font-size:12px;color:#666;line-height:1.7;">' + topDetail.evaluator + '</div>';
-    html += '</div>';
-  }
-
-  // 被評価者の視点
-  if (topDetail.evaluated) {
-    html += '<div style="margin-bottom:12px;">';
-    html += '<div style="font-size:11px;font-weight:600;color:#fff;background:#4CAF50;display:inline-block;padding:4px 10px;border-radius:4px;margin-bottom:6px;">被評価者の視点</div>';
-    html += '<div style="font-size:12px;color:#666;line-height:1.7;">' + topDetail.evaluated + '</div>';
-    html += '</div>';
-  }
-
   // 必要な能力
   if (topDetail.abilities && topDetail.abilities.length > 0) {
     html += '<div style="margin-bottom:12px;">';
