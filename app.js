@@ -1625,7 +1625,7 @@ var benefitTiers = {
   'remote':     { label: '在宅ワーク', color: '#FFF3E0', text: '#e65100', border: '#FFCC80' },
   'flex_field': { label: 'フレックス＋フィールドワーク', color: '#E0F7FA', text: '#00695c', border: '#80CBC4' },
   'flex_remote':{ label: 'フレックス＋在宅ワーク', color: '#E8F5E9', text: '#2e7d32', border: '#A5D6A7' },
-  'flex_annual':{ label: 'フレックス＋在宅ワーク＋年俸制', color: '#C8E6C9', text: '#1b5e20', border: '#66BB6A' }
+  'flex_annual':{ label: 'フレックス＋在宅ワーク＋年俸制', color: '#E8EAF6', text: '#283593', border: '#9FA8DA' }
 };
 
 function getGradeBenefitTier(grade) {
