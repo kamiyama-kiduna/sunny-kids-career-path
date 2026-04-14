@@ -2662,13 +2662,13 @@ function renderCareerPathMapInteractive() {
     + '<div style="text-align:right;margin-top:12px;"><button onclick="document.getElementById(\'deptInfoPopup\').style.display=\'none\'" style="background:none;border:1px solid #ccc;border-radius:8px;padding:6px 16px;cursor:pointer;font-size:13px;color:#666;">閉じる</button></div>'
     + '</div>';
 
-  // Department info (right side) — positioned far right, avoiding M4 overlap
-  html += '<div style="position:absolute;right:10px;top:'+(RY.S+25)+'px;width:90px;text-align:right;">';
-  html += '<div style="font-size:11px;color:#00796b;line-height:1.4;">会計・レセプト<br>診療統括</div></div>';
-  html += '<div style="position:absolute;right:10px;top:'+(RY.P+25)+'px;width:90px;text-align:right;">';
-  html += '<div style="font-size:11px;color:#bf360c;line-height:1.4;">広報・採用・DX<br>組織文化・人事</div></div>';
-  html += '<div style="position:absolute;right:10px;top:'+(RY.B+25)+'px;width:90px;text-align:right;">';
-  html += '<div style="font-size:11px;color:#1565c0;line-height:1.4;">労務・総務<br>経理</div></div>';
+  // Department info (right side) — positioned at row label area (left of M4)
+  html += '<div style="position:absolute;right:120px;top:'+(RY.S-45)+'px;text-align:right;">';
+  html += '<div style="font-size:10px;color:#00796b;opacity:0.7;">会計・レセプト・診療統括</div></div>';
+  html += '<div style="position:absolute;right:10px;top:'+(RY.P-45)+'px;text-align:right;">';
+  html += '<div style="font-size:10px;color:#bf360c;opacity:0.7;">広報・採用・DX・組織文化・人事</div></div>';
+  html += '<div style="position:absolute;right:10px;top:'+(RY.B-45)+'px;text-align:right;">';
+  html += '<div style="font-size:10px;color:#1565c0;opacity:0.7;">労務・総務・経理</div></div>';
 
   // Benefit zone backgrounds (colored bands behind nodes)
   var zoneH = 56; // zone height
@@ -2698,26 +2698,10 @@ function renderCareerPathMapInteractive() {
     html += '<div style="position:absolute;left:'+z.x1+'px;top:'+(z.y-zoneH/2)+'px;'
       +'width:'+(z.x2-z.x1)+'px;height:'+zoneH+'px;'
       +'background:'+bi.color+';border:1px solid '+bi.border+';border-radius:'+zoneR+'px;'
-      +'opacity:0.5;z-index:0;pointer-events:none;"></div>';
+      +'opacity:0.7;z-index:0;pointer-events:none;"></div>';
   });
 
-  // Benefit zone legend (bottom right)
-  var legendZones = [
-    {tier:'remote_sup', label:'在宅ワーク（指示下）'},
-    {tier:'remote', label:'在宅ワーク'},
-    {tier:'flex_field', label:'フレックス＋フィールドワーク'},
-    {tier:'flex_remote', label:'フレックス＋在宅ワーク'},
-    {tier:'flex_annual', label:'フレックス＋在宅ワーク＋年俸制'}
-  ];
-  html += '<div style="position:absolute;right:10px;bottom:10px;z-index:5;font-size:9px;line-height:1.8;">';
-  legendZones.forEach(function(lz) {
-    var bi = benefitTiers[lz.tier];
-    html += '<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'
-      +'<span>'+lz.label+'</span>'
-      +'<span style="display:inline-block;width:14px;height:10px;background:'+bi.color+';border:1px solid '+bi.border+';border-radius:2px;"></span>'
-      +'</div>';
-  });
-  html += '</div>';
+  // Benefit zone legend — rendered outside map container (see below after map close)
 
   // SVG connection lines
   html += '<svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 '+W+' '+H+'">';
@@ -2773,6 +2757,24 @@ function renderCareerPathMapInteractive() {
   html += '<div style="display:flex;justify-content:center;gap:16px;margin-top:10px;font-size:10px;color:#999;flex-wrap:wrap;">';
   html += '<span style="background:#f5f5f5;padding:4px 10px;border-radius:8px;">S3までは共通 → S4以降でコースが分かれます</span>';
   html += '<span style="background:#f5f5f5;padding:4px 10px;border-radius:8px;">各コースの最上位からM4（経営）へ進めます</span>';
+  html += '</div>';
+
+  // Benefit zone legend (below map, left-aligned horizontal)
+  var legendZones = [
+    {tier:'remote_sup', label:'在宅ワーク（指示下）'},
+    {tier:'remote', label:'在宅ワーク'},
+    {tier:'flex_field', label:'フレックス＋フィールドワーク'},
+    {tier:'flex_remote', label:'フレックス＋在宅ワーク'},
+    {tier:'flex_annual', label:'フレックス＋在宅＋年俸制'}
+  ];
+  html += '<div style="display:flex;gap:14px;margin-top:8px;flex-wrap:wrap;padding-left:4px;">';
+  html += '<span style="font-size:10px;color:#999;font-weight:600;">待遇ゾーン:</span>';
+  legendZones.forEach(function(lz) {
+    var bi = benefitTiers[lz.tier];
+    html += '<span style="display:inline-flex;align-items:center;gap:3px;font-size:10px;color:#666;">'
+      +'<span style="display:inline-block;width:14px;height:10px;background:'+bi.color+';border:1px solid '+bi.border+';border-radius:2px;opacity:0.7;"></span>'
+      +lz.label+'</span>';
+  });
   html += '</div>';
 
   // Current selection info
