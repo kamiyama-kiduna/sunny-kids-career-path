@@ -2689,6 +2689,13 @@ function renderCareerPathMapInteractive() {
       +'</div>';
 
     // Grade label below (M4 gets special combined label)
+    var bTier = getGradeBenefitTier(grade);
+    var bInfo = benefitTiers[bTier] || benefitTiers['none'];
+    var badgeOffset = grade === 'M4' ? 38 : 20;
+    var badgeHtml = bInfo.label
+      ? '<div style="position:absolute;left:'+(n.x-55)+'px;top:'+(n.y+r+badgeOffset)+'px;width:110px;text-align:center;pointer-events:none;z-index:2;">'
+        +'<span style="font-size:8px;padding:1px 4px;border-radius:3px;background:'+bInfo.color+';color:'+bInfo.text+';border:1px solid '+bInfo.border+';white-space:nowrap;line-height:1.3;">'+bInfo.label+'</span></div>'
+      : '';
     if (grade === 'M4') {
       html += '<div style="position:absolute;left:'+(n.x-40)+'px;top:'+(n.y+r+4)+'px;width:80px;text-align:center;'
         +'font-size:12px;font-weight:700;color:'+color+';pointer-events:none;z-index:2;line-height:1.5;">M4<br><span style="font-size:10px;font-weight:400;color:#546e7a;">CEO / 執行役員</span></div>';
@@ -2696,6 +2703,7 @@ function renderCareerPathMapInteractive() {
       html += '<div style="position:absolute;left:'+(n.x-25)+'px;top:'+(n.y+r+4)+'px;width:50px;text-align:center;'
         +'font-size:12px;font-weight:700;color:'+color+';pointer-events:none;z-index:2;">'+grade+'</div>';
     }
+    html += badgeHtml;
 
     // "いまここ" indicator — positioned clearly above the circle
     if(isCur){
@@ -3150,13 +3158,14 @@ function updateSimResult() {
   html += '<div style="margin-top:12px;text-align:left;">';
   breakdown.forEach(function(b) {
     var pct = b.contribution;
-    html += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:12px;">';
-    html += '<div style="width:90px;text-align:left;font-weight:600;color:' + b.color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + b.label + '</div>';
-    html += '<div style="width:60px;text-align:right;color:#888;white-space:nowrap;">' + b.weight + '% × ' + b.score + '点</div>';
-    html += '<div style="flex:1;background:#f0f0f0;border-radius:4px;height:16px;overflow:hidden;">';
+    html += '<div style="margin-bottom:8px;font-size:12px;">';
+    html += '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;">';
+    html += '<span style="font-weight:600;color:' + b.color + ';">' + b.label + '</span>';
+    html += '<span style="color:#888;font-size:11px;">' + b.weight + '% × ' + b.score + '点 = <b style="color:#333;">' + b.contribution + '</b></span>';
+    html += '</div>';
+    html += '<div style="background:#f0f0f0;border-radius:4px;height:14px;overflow:hidden;">';
     html += '<div style="width:' + pct + '%;height:100%;background:' + b.color + ';border-radius:4px;min-width:2px;opacity:0.8;"></div>';
     html += '</div>';
-    html += '<div style="width:30px;font-weight:600;color:#333;text-align:right;">' + b.contribution + '</div>';
     html += '</div>';
   });
   html += '</div>';
