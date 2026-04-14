@@ -301,75 +301,57 @@ const coreValueLevelDetails = {
 };
 
 const okrRankDetails = {
-  'SS+': {
-    title: '法人全体を牽引し、革新と文化をつくるレベル',
-    detail: 'ビジョンや価値観に深く影響を与える取り組みを自ら提案・実行し、継続的に成果を出している / 新制度設計、事業戦略、ブランド構築などをリード / 周囲のモチベーションを引き上げるリーダーシップと模範的姿勢',
-    meaning: '圧倒的な法人貢献 / 経営に近いインパクトや文化創出への貢献を称える特別枠',
+  'SS': {
+    title: '革新（Visionary）— 法人全体を牽引し、革新と文化をつくるレベル',
+    detail: '法人全体のビジョンや価値観に深く影響を与えるような取り組みを自ら提案・実行し、継続的に成果を出している / 新制度設計、事業戦略、ブランド構築などを主導し、組織文化そのものを創り上げている / 周囲のモチベーションを引き上げるリーダーシップと模範的姿勢で法人全体を牽引している',
+    meaning: '特別な貢献 / 圧倒的な法人貢献。経営に近いインパクトや文化創出への貢献を称える',
     hint: '①売上・収益への貢献: 既存患者のLTV向上 / 新患数・問い合わせ数の増加 / 自費診療の導入や提案強化 / サービスの質向上による評判アップ'
   },
-  'SS': {
-    title: '法人全体に明確な成果と好影響を与えているレベル',
-    detail: '医院を超えた法人レベルの課題に主体的かつ全体最適で取り組む / 部署・職種をまたいで協働し、継続的な成果を出す仕組みを動かす / 強みや経験を活かし、他スタッフへの指導や育成につなげている',
-    meaning: '法人レベルの成果を安定 / 役職者・幹部層想定',
+  'S': {
+    title: '変革（Transformer）— 医院・部署の枠を超え、仕組みを変えるレベル',
+    detail: '医院を超えた法人レベルの課題に対して、主体的に取り組み、全体最適の視点で成果を出している / 部署や職種をまたいで協働し、継続的に成果が出る仕組みを構築・運用している / 自分の強みや経験を組織に還元し、他のスタッフの成長にも貢献している',
+    meaning: '組織の柱 / 法人レベルの成果を安定して出している。分院・チーム単位で継続的な仕組みを動かしている',
     hint: '②コスト最適化: 人件費・備品費・外注費などの削減 / 無駄な業務・二度手間の削除 / システム導入などによる自動化・省力化の推進'
   },
-  'S+': {
-    title: '医院の枠を超えた広がりのある成果を出しているレベル',
-    detail: '他院・他部署でも活用可能な仕組みやコンテンツを自発的に開発・共有 / 院外メンバーからの信頼も厚く、支援依頼が自然と集まる / 短期成果だけでなく、中長期での価値創出に貢献している',
-    meaning: '分院・チーム単位での成果と影響力 / コアスタッフ・リーダー層想定',
+  'AA': {
+    title: '卓越（High Performer）— 常に期待以上の成果を出し、ノウハウを周囲に還元するレベル',
+    detail: '基準を安定して超え続け、Sランクに迫る高いパフォーマンスを発揮している / 他院や他部署にも参考となるような成功事例を自ら生み出し、共有・波及させている / チームの中核として後輩指導や改善提案も積極的に行い、組織全体の底上げに貢献',
+    meaning: 'エース人材 / チームの中核であり、自走力と影響力を兼ね備えている。上位層への昇格候補',
     hint: '③業務効率化・生産性向上: オペレーションやフローの改善 / 業務の見える化、標準化、マニュアル整備 / ミスの削減やトラブル未然防止'
   },
-  'S': {
-    title: '医院を超えてインパクトを出しているレベル',
-    detail: '他院にも波及する成功事例・ノウハウを実践・共有 / 院内だけでなく、法人内チーム運営やプロジェクトに積極的に関与 / チームメンバーや後輩の成長に寄与する関わりを意識的に行う',
-    meaning: '院内で成果＋周囲への還元 / 所属院内で成果を出し、周囲の成長にも貢献している',
+  'A': {
+    title: '優秀（Achiever）— 自身の役割において期待を大きく上回るレベル',
+    detail: '指示待ちにならず、自ら考え行動し、プラスアルファの成果を出している / 目標達成に向けて具体的な工夫を重ね、安定して質の高いアウトプットを実現 / 周囲からの信頼も厚く、チーム内で頼りにされる存在',
+    meaning: '高貢献 / 明確な成果を出しており、信頼できる。Bの枠を超え、自らの意思で高い成果を目指している',
     hint: '④患者・利用者満足度: アンケートや口コミ評価の向上 / クレームや問い合わせの減少 / 利便性の向上（待ち時間短縮、案内改善など）'
   },
-  'A+': {
-    title: '医院内で高い成果を継続的に出しているレベル',
-    detail: '院内で信頼される存在として、常に安定した成果を出している / 業務改善や患者満足度向上など、成果に直結する取り組みを自走 / チーム全体の成果を意識し、周囲へ良い影響を与えている',
-    meaning: '明確な成果と自走力 / 上位層へのステップ手前',
+  'B': {
+    title: '基準・安定（Standard）— 定型業務を安定して回し、信頼を得ているレベル',
+    detail: '与えられた役割・目標に対して、きちんと成果を出している / 自身の仕事に責任を持ち、日常業務で工夫や挑戦が見られる / チームの一員として安定的に貢献し、信頼を得ている',
+    meaning: '信頼できる戦力 / 標準レベル。一定の成果を出し、安定的に貢献している',
     hint: '⑤スタッフのエンゲージメント: 離職率の低下・定着率アップ / メンタルヘルス・満足度の向上 / 自発的な提案・改善行動の増加'
   },
-  'A': {
-    title: '医院内で一定の成果を出しているレベル',
-    detail: '与えられた役割・目標に対して、きちんと成果を出している / 自身の仕事に責任を持ち、日常業務で安定したパフォーマンスを維持 / チームの一員としての役割を果たし、信頼を得ている',
-    meaning: '標準レベル / 一定の成果を出し、安定的に貢献している',
-    hint: '⑥組織文化・チーム力の強化: 他職種連携の質の向上 / チームワーク・心理的安全性の向上 / 定例ミーティングや1on1の質的改善'
-  },
-  'B+': {
-    title: '取り組みが芽を出しつつあるレベル',
-    detail: '自分なりの工夫やチャレンジを実践し、部分的に成果が見え始めている / 今後の成長が楽しみな取り組みが進行中で、周囲の期待も高まりつつある / 試行錯誤しながら、継続的に前向きな行動を取っている',
-    meaning: '成果は未達だが、兆しあり / 努力と成長の兆しが見られる',
-    hint: '⑦将来価値の創出: 新規サービス・取り組みの立ち上げ / 人材育成・後進育成による「未来の成果」への貢献'
-  },
-  'B': {
-    title: '限定的な成果にとどまっているレベル',
-    detail: '取り組みはあるものの、成果が部分的かつ小規模 / 自分の業務に手一杯で、周囲や全体への貢献にはつながっていない / 成果が出ない原因の振り返りや改善へのアプローチが必要',
-    meaning: '伸びしろ段階・課題あり / 成果も薄く、明確な課題がある',
-    hint: null
-  },
-  'C+': {
-    title: '努力はしているが成果が見えないレベル',
-    detail: '課題に向き合う姿勢はあるが、行動が成果に結びついていない / 学習している様子はあるが、実務での成果や変化が乏しい / 試行錯誤や振り返りの頻度・質に課題がある',
-    meaning: '停滞状態 / 指導やサポートが必要なレベル',
-    hint: null
-  },
   'C': {
-    title: '目立った努力・成果が見られないレベル',
-    detail: '目標達成に向けた行動が見られず、成果も上がっていない / 周囲の支援やフィードバックを活かす姿勢が弱い / 今後の働き方や意識の大きな見直しが必要',
-    meaning: '著しい貢献不足 / 賞与支給対象外または極小',
+    title: '成長段階（Developing）— 限定的な成果にとどまっているレベル',
+    detail: '取り組み自体はあるものの、成果が部分的かつ小規模にとどまっている / 自分の業務に手一杯で、周囲や全体への貢献にはつながっていない / 成果が出ない原因の振り返りや改善へのアプローチが求められる',
+    meaning: '要成長 / 成果も薄く、まだ伸びしろ段階。明確な課題がある',
+    hint: null
+  },
+  'D': {
+    title: '停滞（Stagnant）— 努力はしているが成果が見えないレベル',
+    detail: '自ら課題に向き合おうという姿勢は見られるが、行動が成果に結びついていない / 学習している様子はあるが、実務での成果や変化が乏しい / 指導やサポートを受けながら立て直す必要がある',
+    meaning: '要指導 / 停滞状態。指導やサポートが必要なレベル',
     hint: null
   }
 };
 
-const okrRankOrder = ['SS+', 'SS', 'S+', 'S', 'A+', 'A', 'B+', 'B', 'C+', 'C'];
+const okrRankOrder = ['SS', 'S', 'AA', 'A', 'B', 'C', 'D'];
 
     const gradeDetailData = {
   'S1': {
     overview: '基礎習得のステージである。\n\n指導のもとでSunnyの理念・文化・業務の基本を学び、定常業務を正確にこなすことができる。\n\nSunnyの理念やCredに触れながら、組織文化と自身の行動との繋がりを意識しながら行動する習慣を身につけ、自己研鑽に励むことができる。',
-    promotion_standard: 'B+以上2年',
-    promotion_fastest: 'S以上1年',
+    promotion_standard: 'A以上2年',
+    promotion_fastest: 'SS/S評価0.5年・AA評価1年',
     demotion: 'C評価　半年で1回以上　有期雇用継続',
     okr: 'OKRは自身の業務遂行。\n\n目標設定は個人の成長に特化する。6つのCの凡事徹底を行う。',
     job_level: '業務レベル1〜2を習得している\n・職種における特異性を出すことができる。\n・会議での意見・感想の発表ができ、主体的に参加し、自分の業務に活かすことができる。\n・トレーナーの指示があれば、指示どおりに業務を遂行できる。\n・自分に出来ない案件を適切な上司に相談できる。\n・わからないことを溜め込まず、適切に質問・相談ができる。\n・小さな成功体験を積み重ね、１On1や振り返りで自分の言葉で成長を記録する。',
@@ -378,8 +360,8 @@ const okrRankOrder = ['SS+', 'SS', 'S+', 'S', 'A+', 'A', 'B+', 'B', 'C+', 'C'];
   },
   'S2': {
     overview: '企業理念を理解し、自身の成長にコミットしていくステージである。\n\n定常業務を安定して遂行でき、自走することができる。Sunnyの理念やCredの意味を理解し、自分の言葉で語り始めることができる。自らの行動に理念を照らし合わせ、判断に活かせるようになる。',
-    promotion_standard: 'B+以上2年',
-    promotion_fastest: 'S以上1年\n※中途採用の場合、前職のスキル・能力を考慮して入職可能',
+    promotion_standard: 'A以上2年',
+    promotion_fastest: 'SS/S評価0.5年・AA評価1年\n※中途採用の場合、前職のスキル・能力を考慮して入職可能',
     demotion: 'C評価　半年で1回以上',
     okr: 'OKRは自身の業務遂行。\n\n目標設定は、引き続き個人の成長に軸を置くものとする。',
     job_level: '業務レベル3を達成する。\n・1日150人程度であればメンバーとしてどの配置でも組むことができる。\n・配置を組む際にフォローするスタッフを置く必要がない状況である。\n・他職種の業務を理解し、Win-Winを導くことができる。\n・他職種への理解・リスペクトを持ち、後輩（S1）を指導できる力を備える。\n・他職種の役割を理解し、感謝や声かけが自然にできる。\n・こうした方がいいかもと改善視点、未来志向で考えることができる。',
@@ -796,17 +778,12 @@ function renderCVLevelChips(levelRange) {
 }
 
 function renderOKRRankChips(grade) {
-  // 昇格条件からしきい値を判定
+  // 昇格条件からしきい値を判定（7段階: SS,S,AA,A,B,C,D）
   const gd = gradeDetailData[grade || appState.currentGrade] || {};
   const promoStd = gd.promotion_standard || '';
-  // B+以上 → B+からOK、A以上 → AからOK
-  let thresholdIdx;
-  if (promoStd.indexOf('B+') >= 0) {
-    thresholdIdx = okrRankOrder.indexOf('B+'); // B+以上が昇格圏
-  } else {
-    thresholdIdx = okrRankOrder.indexOf('A'); // A以上が昇格圏（デフォルト）
-  }
-  const thresholdLabel = promoStd.indexOf('B+') >= 0 ? 'B+以上' : 'A以上';
+  // A以上が昇格圏（全グレード共通）
+  const thresholdIdx = okrRankOrder.indexOf('A');
+  const thresholdLabel = 'A以上';
 
   let html = '<div class="okr-chips-container">';
   html += '<div style="margin-bottom:10px;padding:12px 16px;background:#e8f5e9;border-radius:10px;font-size:13px;line-height:1.7;">';
@@ -2331,8 +2308,7 @@ function renderSystemInfo() {
             <tr style="background:#4caf50;color:white;"><th style="padding:8px;text-align:left;">総合評価</th><th style="padding:8px;text-align:right;">必要在籍年数</th></tr>
             <tr><td style="padding:8px;border-bottom:1px solid #eee;">SS・S</td><td style="padding:8px;text-align:right;border-bottom:1px solid #eee;">0.5年（最短）</td></tr>
             <tr><td style="padding:8px;border-bottom:1px solid #eee;">AA</td><td style="padding:8px;text-align:right;border-bottom:1px solid #eee;">1年</td></tr>
-            <tr><td style="padding:8px;border-bottom:1px solid #eee;">A</td><td style="padding:8px;text-align:right;border-bottom:1px solid #eee;">2年（標準）</td></tr>
-            <tr style="background:#fff8e1;"><td style="padding:8px;font-size:12px;">B+（S1・S2のみ）</td><td style="padding:8px;text-align:right;font-size:12px;">2年</td></tr>
+            <tr><td style="padding:8px;">A</td><td style="padding:8px;text-align:right;">2年（標準）</td></tr>
           </table>
         </div>
         <div>
@@ -2348,6 +2324,44 @@ function renderSystemInfo() {
       </div>
       <div style="font-size:12px;color:var(--light-text);text-align:center;padding:8px;background:#fafafa;border-radius:8px;">
         ※ B評価以下ではグレード昇格対象になりません。昇格には直属上長の推薦が必要です。リーダー層以上は経営層会議での審議・決裁も必要です。
+      </div>
+    </div>
+  `;
+
+  // ===== 6.5 新制度移行スケジュール =====
+  html += `
+    <div class="section">
+      <div class="section-title">📅 新制度 移行スケジュール</div>
+      <div style="position:relative;padding-left:28px;">
+        <div style="position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#4caf50,#1565c0,#e65100);border-radius:2px;"></div>
+        <div style="margin-bottom:20px;position:relative;">
+          <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;background:#4caf50;border-radius:50%;border:3px solid white;box-shadow:0 0 0 2px #4caf50;"></div>
+          <div style="font-weight:700;color:#4caf50;font-size:14px;">第1段階：2026年7月 — 制度告知＋グレード仮通知</div>
+          <div style="font-size:13px;color:var(--text);margin-top:6px;line-height:1.7;padding:10px 14px;background:#e8f5e9;border-radius:10px;">
+            新制度の仕組みとグレードをスタッフに伝える段階です。給与は旧制度のまま変わりません。<br>
+            キャリアパスガイドアプリもこのタイミングで公開し、制度理解に集中してもらいます。<br>
+            グレードに納得がいかない場合の相談窓口も設けます。
+          </div>
+        </div>
+        <div style="margin-bottom:20px;position:relative;">
+          <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;background:#1565c0;border-radius:50%;border:3px solid white;box-shadow:0 0 0 2px #1565c0;"></div>
+          <div style="font-weight:700;color:#1565c0;font-size:14px;">第2段階：7〜9月 — 新評価制度で並行運用</div>
+          <div style="font-size:13px;color:var(--text);margin-top:6px;line-height:1.7;padding:10px 14px;background:#e3f2fd;border-radius:10px;">
+            新しい4軸評価（OKR・コアバリュー・業務レベル・スキル）で実際に評価しますが、給与にはまだ反映しません。<br>
+            評価者が新しい評価に慣れる時間を確保します。実データをもとに暫定グレードの見直しにも活用できます。
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;background:#e65100;border-radius:50%;border:3px solid white;box-shadow:0 0 0 2px #e65100;"></div>
+          <div style="font-weight:700;color:#e65100;font-size:14px;">第3段階：10月〜 — 新給与体系に切り替え</div>
+          <div style="font-size:13px;color:var(--text);margin-top:6px;line-height:1.7;padding:10px 14px;background:#fff3e0;border-radius:10px;">
+            並行運用の結果を踏まえて新給与体系に移行します。雇用契約書もこのタイミングで作成。<br>
+            調整給（現行給与との差額）もここからスタートし、段階的に吸収していきます。
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;font-size:12px;color:var(--light-text);text-align:center;padding:8px;background:#fafafa;border-radius:8px;">
+        ※ 各段階で問題が出た場合は次のステップを調整できます。給与額はどの移行方法でも変わりません。
       </div>
     </div>
   `;
@@ -3137,15 +3151,10 @@ function updateSimResult() {
   else if (totalWeighted >= 31) { rank='C'; rankColor='#c62828'; rankBg='#fce4ec'; }
   else { rank='D'; rankColor='#b71c1c'; rankBg='#fce4ec'; }
 
-  // 昇格判定
+  // 昇格判定（A以上＝61点以上で昇格圏）
   var gd = gradeDetailData[appState.currentGrade] || {};
   var promoStd = gd.promotion_standard || '';
-  var canPromote = false;
-  if (promoStd.indexOf('B+') >= 0) {
-    canPromote = totalWeighted >= 55;
-  } else {
-    canPromote = totalWeighted >= 65;
-  }
+  var canPromote = totalWeighted >= 61;
 
   var html = '';
   html += '<div style="font-size:12px;color:#888;margin-bottom:6px;">あなたの総合評価（シミュレーション）</div>';
@@ -3173,7 +3182,7 @@ function updateSimResult() {
   // 昇格可否
   html += '<div style="margin-top:12px;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;'
     + (canPromote ? 'background:#e8f5e9;color:#2e7d32;border:1px solid #81c784;">' + '✅ この評価なら昇格圏内です（' + promoStd + '）'
-      : 'background:#fff3e0;color:#e65100;border:1px solid #ffcc80;">' + '⚠ 昇格には ' + (promoStd.indexOf('B+') >= 0 ? 'B+' : 'A') + ' 以上が必要です（現在: ' + rank + '）')
+      : 'background:#fff3e0;color:#e65100;border:1px solid #ffcc80;">' + '⚠ 昇格にはA以上が必要です（現在: ' + rank + '）')
     + '</div>';
 
   document.getElementById('simResult').innerHTML = html;
