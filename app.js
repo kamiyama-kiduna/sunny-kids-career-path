@@ -2670,6 +2670,55 @@ function renderCareerPathMapInteractive() {
   html += '<div style="position:absolute;right:10px;top:'+(RY.B+25)+'px;width:90px;text-align:right;">';
   html += '<div style="font-size:11px;color:#1565c0;line-height:1.4;">労務・総務<br>経理</div></div>';
 
+  // Benefit zone backgrounds (colored bands behind nodes)
+  var zoneH = 56; // zone height
+  var zoneR = 12; // border radius
+  // Define zones: {y, x1, x2, tier, label}
+  var benefitZones = [
+    // S row: S1-S4 = none, S5-M2 = flex_remote, M3 = flex_annual
+    {y:RY.S, x1:CX[5]-30, x2:CX.M2+30, tier:'flex_remote'},
+    {y:RY.S, x1:CX.M3-30, x2:CX.M3+30, tier:'flex_annual'},
+    // SP row: SP5 = flex_field
+    {y:RY.SP, x1:CX[5]-30, x2:CX[5]+30, tier:'flex_field'},
+    // P row: P3 = remote, P4-PM2 = flex_remote, PM3 = flex_annual
+    {y:RY.P, x1:CX[3]-30, x2:CX[3]+30, tier:'remote'},
+    {y:RY.P, x1:CX[4]-30, x2:CX.M2+30, tier:'flex_remote'},
+    {y:RY.P, x1:CX.M3-30, x2:CX.M3+30, tier:'flex_annual'},
+    // B row: B2 = remote_sup, B3-B5 = remote, BL-BM2 = flex_remote, BM3 = flex_annual
+    {y:RY.B, x1:CX[2]-30, x2:CX[2]+30, tier:'remote_sup'},
+    {y:RY.B, x1:CX[3]-30, x2:CX[5]+30, tier:'remote'},
+    {y:RY.B, x1:CX.L-30, x2:CX.M2+30, tier:'flex_remote'},
+    {y:RY.B, x1:CX.M3-30, x2:CX.M3+30, tier:'flex_annual'},
+    // M4 = flex_annual
+    {y:380, x1:1030, x2:1090, tier:'flex_annual'}
+  ];
+  benefitZones.forEach(function(z) {
+    var bi = benefitTiers[z.tier];
+    if (!bi || !bi.label) return;
+    html += '<div style="position:absolute;left:'+z.x1+'px;top:'+(z.y-zoneH/2)+'px;'
+      +'width:'+(z.x2-z.x1)+'px;height:'+zoneH+'px;'
+      +'background:'+bi.color+';border:1px solid '+bi.border+';border-radius:'+zoneR+'px;'
+      +'opacity:0.5;z-index:0;pointer-events:none;"></div>';
+  });
+
+  // Benefit zone legend (bottom right)
+  var legendZones = [
+    {tier:'remote_sup', label:'在宅ワーク（指示下）'},
+    {tier:'remote', label:'在宅ワーク'},
+    {tier:'flex_field', label:'フレックス＋フィールドワーク'},
+    {tier:'flex_remote', label:'フレックス＋在宅ワーク'},
+    {tier:'flex_annual', label:'フレックス＋在宅ワーク＋年俸制'}
+  ];
+  html += '<div style="position:absolute;right:10px;bottom:10px;z-index:5;font-size:9px;line-height:1.8;">';
+  legendZones.forEach(function(lz) {
+    var bi = benefitTiers[lz.tier];
+    html += '<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'
+      +'<span>'+lz.label+'</span>'
+      +'<span style="display:inline-block;width:14px;height:10px;background:'+bi.color+';border:1px solid '+bi.border+';border-radius:2px;"></span>'
+      +'</div>';
+  });
+  html += '</div>';
+
   // SVG connection lines
   html += '<svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 '+W+' '+H+'">';
   conns.forEach(function(c){
@@ -2702,14 +2751,7 @@ function renderCareerPathMapInteractive() {
       +'transition:all 0.2s;z-index:3;">'
       +'</div>';
 
-    // Grade label below (M4 gets special combined label)
-    var bTier = getGradeBenefitTier(grade);
-    var bInfo = benefitTiers[bTier] || benefitTiers['none'];
-    var badgeOffset = grade === 'M4' ? 38 : 20;
-    var badgeHtml = bInfo.label
-      ? '<div style="position:absolute;left:'+(n.x-55)+'px;top:'+(n.y+r+badgeOffset)+'px;width:110px;text-align:center;pointer-events:none;z-index:2;">'
-        +'<span style="font-size:8px;padding:1px 4px;border-radius:3px;background:'+bInfo.color+';color:'+bInfo.text+';border:1px solid '+bInfo.border+';white-space:nowrap;line-height:1.3;">'+bInfo.label+'</span></div>'
-      : '';
+    // Grade label below node
     if (grade === 'M4') {
       html += '<div style="position:absolute;left:'+(n.x-40)+'px;top:'+(n.y+r+4)+'px;width:80px;text-align:center;'
         +'font-size:12px;font-weight:700;color:'+color+';pointer-events:none;z-index:2;line-height:1.5;">M4<br><span style="font-size:10px;font-weight:400;color:#546e7a;">CEO / 執行役員</span></div>';
@@ -2717,7 +2759,6 @@ function renderCareerPathMapInteractive() {
       html += '<div style="position:absolute;left:'+(n.x-25)+'px;top:'+(n.y+r+4)+'px;width:50px;text-align:center;'
         +'font-size:12px;font-weight:700;color:'+color+';pointer-events:none;z-index:2;">'+grade+'</div>';
     }
-    html += badgeHtml;
 
     // "いまここ" indicator — positioned clearly above the circle
     if(isCur){
