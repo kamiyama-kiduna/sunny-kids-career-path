@@ -3127,36 +3127,38 @@ function getSimAxisOptions(axisKey, grade) {
       + '<option value="20">D（20点）停滞：努力はしているが成果が見えない</option>';
   }
   if (axisKey === 'cv') {
-    // コアバリュー: 10段階レベルで選択 → グレードに応じて点数を自動変換
+    // コアバリュー: 10段階レベルで選択 → グレードに応じて7段階点数を自動変換
     var targetLv = parseInt(coreValueLevels[grade] || '4');
+    var scoreToRank = {100:'SS', 90:'S', 80:'AA', 70:'A', 50:'B', 30:'C', 20:'D'};
     var opts = '';
     for (var lv = 10; lv >= 1; lv--) {
       var score = getCoreValueScore(grade, lv);
+      var rankName = scoreToRank[score] || '';
       var lvName = coreValueLevelNames[String(lv)] || '';
       var shortName = lvName.length > 20 ? lvName.substring(0, 20) + '…' : lvName;
       var selected = (lv === targetLv) ? ' selected' : '';
       var targetMark = (lv === targetLv) ? ' ◀ 目標' : '';
-      opts += '<option value="' + score + '"' + selected + '>Lv.' + lv + '（' + score + '点）' + shortName + targetMark + '</option>';
+      opts += '<option value="' + score + '"' + selected + '>Lv.' + lv + '（' + rankName + ' ' + score + '点）' + shortName + targetMark + '</option>';
     }
     return opts;
   }
   if (axisKey === 'job') {
-    // 業務レベル: 7段階評価（評価基準シート準拠・%基準明記）
+    // 業務レベル: 7段階評価（評価基準シート準拠・%基準明記）A=目標
     return '<option value="100">SS（100点）次グレード到達：次グレードのA評価相当の業務ができている</option>'
       + '<option value="90">S（90点）模範・継承：120%達成｜チームの手本となり仕組みを作る側</option>'
       + '<option value="80">AA（80点）卓越・熟達：100%を質高く実施｜安心して任せきれる</option>'
-      + '<option value="70" selected>A（70点）完全達成：80〜100%達成｜自立して要件を満たしている</option>'
+      + '<option value="70" selected>A（70点）完全達成：80〜100%達成｜自立して要件を満たしている ◀ 目標</option>'
       + '<option value="50">B（50点）現状維持：70〜80%達成｜定型業務は回せるが課題あり</option>'
       + '<option value="30">C（30点）要改善：50%前後達成｜スキル不足で他者のサポートが必須</option>'
       + '<option value="20">D（20点）懸念：30%以下達成｜業務を任せるのが不安な状態</option>';
   }
   if (axisKey === 'comp') {
-    // ソフトスキル・ハードスキル: 7段階評価（評価基準シート準拠・%基準明記）
+    // ソフトスキル・ハードスキル: 7段階評価（評価基準シート準拠・%基準明記）A=目標
     var compDesc = getCompetencyDescription(grade);
     return '<option value="100">SS（100点）次グレード到達：次グレードのA評価相当のスキルを発揮</option>'
       + '<option value="90">S（90点）模範・継承：120%達成｜後輩の手本となり教えられる</option>'
       + '<option value="80">AA（80点）卓越・熟達：100%を質高く発揮｜どんな状況でも安定</option>'
-      + '<option value="70" selected>A（70点）完全達成：80〜100%達成｜' + compDesc + 'ができている</option>'
+      + '<option value="70" selected>A（70点）完全達成：80〜100%達成｜' + compDesc + 'ができている ◀ 目標</option>'
       + '<option value="50">B（50点）現状維持：70〜80%達成｜発揮にムラがあり時折フォロー必要</option>'
       + '<option value="30">C（30点）要改善：50%前後達成｜必要なスキルが不足している</option>'
       + '<option value="20">D（20点）懸念：30%以下達成｜基本的なスキルが未習得</option>';
